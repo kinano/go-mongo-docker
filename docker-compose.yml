@@ -1,0 +1,14 @@
+version: "3"
+services:
+  sk-next-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      # Map the host's 8080 port to the container's 3000 port
+      - "8080:3000"
+    volumes:
+      - .:/go/src/app
+
+  sk-next-data:
+    image: skedaddle/mongo

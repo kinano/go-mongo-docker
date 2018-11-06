@@ -17,10 +17,10 @@ brew install dep && brew upgrade dep
 * Define $GOPATH on your local box
 ```
 # If you are using bash
-echo 'export GOPATH=~/Development/go' > ~/.bash_profile
+echo 'export GOPATH=~/Development/go' >> ~/.bash_profile
 source ~/.bash_profile
 # If you are using zsh
-echo 'export GOPATH=~/Development/go' > ~/.zshrc
+echo 'export GOPATH=~/Development/go' >> ~/.zshrc
 source ~/.zshrc
 ```
 * Git clone the repo in $GOPATH/src/booking

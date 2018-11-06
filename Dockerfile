@@ -1,12 +1,11 @@
-FROM golang:1.11
+FROM skedaddle/go
 
 WORKDIR /go/src/app
+
+# Copy the source code
 COPY . .
 
-RUN wget -P /tmp/dep https://raw.githubusercontent.com/golang/dep/master/install.sh
-RUN chmod +rwx /tmp/dep/install.sh
-RUN /tmp/dep/install.sh
-RUN rm /tmp/dep/install.sh
+# Compile dependencies using dep
 RUN dep ensure -vendor-only
 
 CMD go run main.go

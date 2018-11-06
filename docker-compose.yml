@@ -1,6 +1,9 @@
 version: "3"
 services:
-  sk-next-api:
+  db:
+    image: skedaddle/mongo
+
+  api:
     build:
       context: .
       dockerfile: Dockerfile
@@ -9,6 +12,3 @@ services:
       - "8080:3000"
     volumes:
       - .:/go/src/app
-
-  sk-next-data:
-    image: skedaddle/mongo

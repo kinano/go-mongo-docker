@@ -19,47 +19,12 @@ var (
 	mongoLogsCollection     *mgo.Collection
 )
 
-// @todo @kinano Finalize the data structs for a booking
-type Person struct {
-	firstName string
-	lastName  string
-	email     string
-	phone     string
-}
-
-type Stop struct {
-	name             string
-	leavesAt         time.Time
-	arrivesAt        time.Time
-	latitude         float64
-	longitude        float64
-	formattedAddress string
-	group            string
-	timeZone         string
-}
-
-type TravelEstimate struct {
-	pickup   Stop
-	dropoff  Stop
-	distance int
-	duration int
-}
-
-type Booking struct {
-	ID              bson.ObjectId `bson:"_id,omitempty"`
-	name            string
-	owner           Person
-	riders          []Person
-	stops           []Stop
-	travelEstimates []TravelEstimate
-}
-
 type jsonType gin.H
 
 func init() {
 	mongoSession, err := mgo.Dial(os.Getenv("MONGO_URL"))
 	if err != nil {
-		log.Fatal(err.Error())
+		log.Fatal("Unable to connect to the data store: ", err.Error())
 	}
 	mongoBookingsCollection = mongoSession.DB(os.Getenv("MONGO_DB_NAME")).C(os.Getenv("MONGO_DB_BOOKINGS_COLLECTION"))
 	mongoLogsCollection = mongoSession.DB(os.Getenv("MONGO_DB_NAME")).C(os.Getenv("MONGO_DB_LOGS_COLLECTION"))

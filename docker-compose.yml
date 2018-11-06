@@ -2,8 +2,14 @@ version: "3"
 services:
   db:
     image: skedaddle/mongo
+    # Forward the mongodb port from the host to the container
+    ports:
+      - "27017:27017"
 
   api:
+    # Install environment files
+    env_file:
+      - config/local.env
     build:
       context: .
       dockerfile: Dockerfile

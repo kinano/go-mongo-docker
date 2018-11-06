@@ -1,3 +1,3 @@
-# Sk-Booking
+# Sk-Next-API
 
-Supports Skedaddle's booking capabilities
+Supports Skedaddle's Next Gen API (late fall 2018)

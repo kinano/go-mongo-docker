@@ -1,4 +1,4 @@
-version: "3"
+version: "3.7"
 services:
   mongo_db:
     image: skedaddle/mongo
@@ -7,7 +7,9 @@ services:
       - "27017:27017"
     env_file:
       - config/local.env
-
+    volumes:
+      - db:/data/db
+      - configdb:/data/configdb
   api:
     # Install environment files
     env_file:
@@ -20,5 +22,9 @@ services:
     volumes:
       # Map the Go source code folder
       - .:/go/src/app
-      # Map the MongoDB data folder to the host
-      - ./data:/data/db
+
+volumes:
+  # @todo @kinano Setup backups for mongo db files?
+  # Create Docker volumes for Mongo db files
+  db:
+  configdb:

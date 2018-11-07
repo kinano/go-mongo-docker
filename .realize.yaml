@@ -20,6 +20,9 @@ schema:
       status: true
     build:
       status: true
+      command: go build
+      args:
+        - -o ./build/app
     run:
       status: true
   watcher:

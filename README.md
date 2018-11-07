@@ -40,3 +40,8 @@ docker-compose up
 cd $GOPATH/src/github/skedaddle/Sk-Next-API
 docker-compose down
 ```
+
+## How did we implement Hot Reloading on GoLang?
+
+We are using realize to allow us to build the Go project on the fly when the developer saves Go files on the host machine.
+See the `.realize.yml` file for the config we're using and also look at the GitHub repo: https://github.com/oxequa/realize

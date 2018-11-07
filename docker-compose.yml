@@ -1,10 +1,12 @@
 version: "3"
 services:
-  db:
+  mongo_db:
     image: skedaddle/mongo
     # Forward the mongodb port from the host to the container
     ports:
       - "27017:27017"
+    env_file:
+      - config/local.env
 
   api:
     # Install environment files
@@ -14,7 +16,9 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      # Map the host's 8080 port to the container's 3000 port
-      - "8080:3000"
+      - "5000:5000"
     volumes:
+      # Map the Go source code folder
       - .:/go/src/app
+      # Map the MongoDB data folder to the host
+      - ./data:/data/db

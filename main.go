@@ -29,9 +29,9 @@ func init() {
 
 func main() {
 	router := gin.Default()
-	router.GET("/api/booking/:objectId", handleGet)
-	router.POST("/api/booking", handleUpsert)
-	router.POST("/api/booking/:objectId", handleUpsert)
+	router.GET("/booking/:objectId", handleGet)
+	router.POST("/booking", handleUpsert)
+	router.POST("/booking/:objectId", handleUpsert)
 	router.Run(os.Getenv("APP_PORT"))
 }
 

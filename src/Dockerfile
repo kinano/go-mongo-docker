@@ -1,0 +1,12 @@
+FROM skedaddle/go
+WORKDIR ${GOPATH}/src/github.com/skedaddle/api
+
+# Copy dependencies
+COPY Gopkg.toml Gopkg.lock ./
+RUN mkdir ${GOPATH}/src/github.com/skedaddle/api/vendor
+
+# Compile dependencies
+RUN dep ensure -vendor-only -v
+
+# Copy source code
+COPY . .

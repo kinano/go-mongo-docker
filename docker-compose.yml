@@ -16,7 +16,7 @@ services:
       - config/local.env
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.local
     ports:
       - "5000:5000"
     volumes:

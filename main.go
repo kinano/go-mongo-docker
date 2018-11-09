@@ -1,9 +1,6 @@
 package main
 
 import (
-	"bytes"
-	"encoding/json"
-	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -35,7 +32,6 @@ func main() {
 	router.GET("/api/booking/:objectId", handleGet)
 	router.POST("/api/booking", handleUpsert)
 	router.POST("/api/booking/:objectId", handleUpsert)
-	router.POST("/api/login", handleLogin)
 	router.Run(os.Getenv("APP_PORT"))
 }
 
@@ -92,37 +88,4 @@ func handleError(c *gin.Context, e error) {
 func handleSuccess(c *gin.Context, data jsonType) {
 	// fmt.Printf("%+v\n", data)
 	c.JSON(http.StatusOK, jsonType(data))
-}
-
-func handleLogin(c *gin.Context) {
-	var (
-		body jsonType
-	)
-	c.BindJSON(&body)
-	// Ruby expects {"user": {}}
-	body = jsonType{
-		"user": body,
-	}
-
-	bytesRepresentation, err := json.Marshal(body)
-	log.Printf("bytes %+v\n", bytesRepresentation)
-
-	if err != nil {
-		handleError(c, err)
-	}
-
-	// @todo @kinano Move url to config
-	resp, err := http.Post("http://localhost:3000/users/sign_in", "application/json", bytes.NewBuffer(bytesRepresentation))
-	// log.Printf("Login response cookies: %+v\n", resp.Cookies())
-	if err != nil {
-		handleError(c, err)
-	}
-	for _, cookie := range resp.Cookies() {
-		fmt.Println("Found a cookie named:", cookie.Name)
-	}
-
-	var result map[string]interface{}
-	json.NewDecoder(resp.Body).Decode(&result)
-	handleSuccess(c, jsonType{"data": result})
-
 }

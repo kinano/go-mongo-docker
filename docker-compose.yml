@@ -22,6 +22,10 @@ services:
     volumes:
       # Map the Go source code folder
       - .:/go/src/app
+  nginx:
+    image: skedaddle/api-nginx
+    ports:
+      - "80:80"
 
 volumes:
   # @todo @kinano Setup backups for mongo db files?

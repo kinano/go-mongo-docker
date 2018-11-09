@@ -11,4 +11,5 @@ RUN dep ensure -vendor-only -v
 # Copy source code
 COPY . .
 
+# On local DEV, we will use realize to hot reload our code changes in the container
 ENTRYPOINT ${GOPATH}/bin/realize start

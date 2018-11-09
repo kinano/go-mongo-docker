@@ -1,1 +1,1 @@
-/config/local.env filter=crypt diff=crypt
+src/config/local.env filter=crypt diff=crypt

@@ -15,13 +15,15 @@ services:
     env_file:
       - config/local.env
     build:
-      context: .
+      context: ./src
       dockerfile: Dockerfile.local
     ports:
       - "5000:5000"
     volumes:
       # Map the Go source code folder
-      - .:/go/src/app
+      - ./src:/go/src/github.com/skedaddle/api
+      # Leave the vendor folder alone on the container
+      - /go/src/github.com/skedaddle/api/vendor
   nginx:
     image: skedaddle/api-nginx
     ports:

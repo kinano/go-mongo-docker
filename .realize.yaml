@@ -3,28 +3,9 @@ settings:
     force: false
     interval: 0s
 schema:
-- name: Sk-Next-API
+- name: app
   path: .
-  commands:
-    clean:
-      status: true
-    vet:
-      status: false
-    fmt:
-      status: false
-    test:
-      status: false
-    generate:
-      status: true
-    install:
-      status: true
-    build:
-      status: true
-      command: go build
-      args:
-        - -o ./build/app
-    run:
-      status: true
+  commands: {}
   watcher:
     extensions:
     - go

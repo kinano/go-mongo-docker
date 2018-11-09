@@ -22,9 +22,9 @@ services:
     volumes:
       # Map the Go source code folder
       - ./src:/go/src/github.com/skedaddle/api
-      # Don't sync vendor & builder folders with the host
       - /go/src/github.com/skedaddle/api/vendor
-      - /go/src/github.com/skedaddle/api/build
+    # Restart the container on failure
+    restart: on-failure
 
   nginx:
     image: skedaddle/api-nginx

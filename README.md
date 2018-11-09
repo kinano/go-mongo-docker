@@ -32,6 +32,7 @@ dep init -v
 ## Running the container locally using Docker
 ```
 cd $GOPATH/src/github/skedaddle/Sk-Next-API
+docker-compose build # This builds all the images you need to run the API locally
 docker-compose up
 ```
 

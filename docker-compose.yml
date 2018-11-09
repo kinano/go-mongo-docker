@@ -22,8 +22,10 @@ services:
     volumes:
       # Map the Go source code folder
       - ./src:/go/src/github.com/skedaddle/api
-      # Leave the vendor folder alone on the container
+      # Don't sync vendor & builder folders with the host
       - /go/src/github.com/skedaddle/api/vendor
+      - /go/src/github.com/skedaddle/api/build
+
   nginx:
     image: skedaddle/api-nginx
     ports:

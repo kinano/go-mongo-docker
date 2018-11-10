@@ -1,0 +1,43 @@
+sudo: required
+services:
+  - docker
+
+####
+# https://github.com/golang/dep/blob/master/docs/FAQ.md#how-do-i-use-dep-with-docker
+####
+
+# @todo @kinano Add API tests
+# # before_install:
+# #   - docker build -t kinano/multi-container-react-test -f ./client/Dockerfile.dev ./client
+# script:
+#   # Run the React app tests and exit
+#   - docker run kinano/multi-container-react-test npm test -- --coverage
+
+after_success:
+  # Build the prd containers
+  - docker build -t kinano/multi-container-client ./client
+  - docker build -t kinano/multi-container-nginx ./nginx
+  - docker build -t kinano/multi-container-server ./server
+  - docker build -t kinano/multi-container-worker ./worker
+  # Login to Docker CLI
+  - docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWORD
+  # Push to Docker hub
+  - docker push kinano/multi-container-client
+  - docker push kinano/multi-container-server
+  - docker push kinano/multi-container-worker
+  - docker push kinano/multi-container-nginx
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: $EB_APP_NAME
+  env: $EB_ENV_NAME
+  bucket_name: $S3_BUCKET
+  bucket_path: $S3_PATH
+  # Only deploy master changes
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
+

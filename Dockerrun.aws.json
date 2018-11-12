@@ -9,7 +9,7 @@
             "name": "api",
             "image": "skedaddle/sk-next-api",
             "hostname": "api",
-            "essential": true,
+            "essential": false,
             "memory": 1024
         },
         {

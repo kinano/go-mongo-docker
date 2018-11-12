@@ -10,7 +10,7 @@
             "image": "skedaddle/sk-next-api",
             "hostname": "api",
             "essential": true,
-            "memory": 128
+            "memory": 2000
         },
         {
             "name": "nginx",
@@ -26,7 +26,7 @@
             "links": [
                 "api"
             ],
-            "memory": 128
+            "memory": 2000
         }
     ]
 }

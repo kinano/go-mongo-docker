@@ -29,10 +29,15 @@ func init() {
 
 func main() {
 	router := gin.Default()
+	router.GET("/status", handleGetStatus)
 	router.GET("/booking/:objectId", handleGet)
 	router.POST("/booking", handleUpsert)
 	router.POST("/booking/:objectId", handleUpsert)
 	router.Run(os.Getenv("APP_PORT"))
+}
+
+func handleGetStatus(c *gin.Context) {
+	handleSuccess(c, jsonType{"status": "OK"})
 }
 
 func handleGet(c *gin.Context) {

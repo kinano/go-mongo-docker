@@ -1,9 +1,9 @@
-FROM skedaddle/go
-WORKDIR ${GOPATH}/src/github.com/skedaddle/api
+FROM kinano/go
+WORKDIR ${GOPATH}/src/github.com/kinano/api
 
 # Copy dependencies
 COPY Gopkg.toml Gopkg.lock ./
-RUN mkdir ${GOPATH}/src/github.com/skedaddle/api/vendor
+RUN mkdir ${GOPATH}/src/github.com/kinano/api/vendor
 
 # Compile dependencies
 RUN dep ensure -vendor-only -v

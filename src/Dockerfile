@@ -1,6 +1,6 @@
-FROM skedaddle/go
+FROM kinano/go
 
-ENV SRC_DIR=${GOPATH}/src/github.com/skedaddle/api
+ENV SRC_DIR=${GOPATH}/src/github.com/kinano/api
 
 WORKDIR $SRC_DIR
 

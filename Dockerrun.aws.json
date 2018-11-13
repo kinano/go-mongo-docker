@@ -1,20 +1,16 @@
 {
     "AWSEBDockerrunVersion": 2,
-    "authentication": {
-        "bucket": "skedaddle-docker-hub-credentials",
-        "key": "docker-config.json"
-      },
     "containerDefinitions": [
         {
             "name": "api",
-            "image": "skedaddle/sk-next-api",
+            "image": "kinano/go-api",
             "hostname": "api",
             "essential": false,
             "memory": 1024
         },
         {
             "name": "nginx",
-            "image": "skedaddle/api-nginx",
+            "image": "kinano/api-nginx",
             "hostname": "nginx",
             "essential": true,
             "portMappings": [

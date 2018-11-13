@@ -1,0 +1,38 @@
+version: "3.7"
+services:
+  mongo_db:
+    image: skedaddle/mongo
+    # Forward the mongodb port from the host to the container
+    ports:
+      - "27017:27017"
+    env_file:
+      - config/local.env
+    volumes:
+      - db:/data/db
+      - configdb:/data/configdb
+  api:
+    # Install environment files
+    env_file:
+      - config/local.env
+    build:
+      context: ./src
+      dockerfile: Dockerfile.local
+    ports:
+      - "5000:5000"
+    volumes:
+      # Map the Go source code folder
+      - ./src:/go/src/github.com/skedaddle/api
+      - /go/src/github.com/skedaddle/api/vendor
+    # Restart the container on failure
+    restart: on-failure
+
+  nginx:
+    image: skedaddle/api-nginx
+    ports:
+      - "80:80"
+
+volumes:
+  # @todo @kinano Setup backups for mongo db files?
+  # Create Docker volumes for Mongo db files
+  db:
+  configdb:

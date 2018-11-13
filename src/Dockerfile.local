@@ -1,0 +1,15 @@
+FROM kinano/go
+WORKDIR ${GOPATH}/src/github.com/kinano/api
+
+# Copy dependencies
+COPY Gopkg.toml Gopkg.lock ./
+RUN mkdir ${GOPATH}/src/github.com/kinano/api/vendor
+
+# Compile dependencies
+RUN dep ensure -vendor-only -v
+
+# Copy source code
+COPY . .
+
+# On local DEV, we will use realize to hot reload our code changes in the container
+ENTRYPOINT ${GOPATH}/bin/realize start

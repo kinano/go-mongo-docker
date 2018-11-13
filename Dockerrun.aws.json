@@ -1,0 +1,28 @@
+{
+    "AWSEBDockerrunVersion": 2,
+    "containerDefinitions": [
+        {
+            "name": "api",
+            "image": "kinano/go-api",
+            "hostname": "api",
+            "essential": false,
+            "memory": 1024
+        },
+        {
+            "name": "nginx",
+            "image": "kinano/api-nginx",
+            "hostname": "nginx",
+            "essential": true,
+            "portMappings": [
+                {
+                    "hostPort": 80,
+                    "containerPort": 80
+                }
+            ],
+            "links": [
+                "api"
+            ],
+            "memory": 1024
+        }
+    ]
+}

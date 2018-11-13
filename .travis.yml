@@ -1,0 +1,33 @@
+sudo: required
+services:
+  - docker
+
+# @todo @kinano Add API tests
+script:
+  - echo "@todo @kinano Add tests"
+
+after_success:
+  # Build the prd containers
+  - docker build -t kinano/go-api ./src
+  - docker build -t kinano/api-nginx ./nginx
+  # Login to Docker CLI
+  - docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWORD
+  # Push to Docker hub
+  - docker push kinano/go-api
+  - docker push kinano/api-nginx
+
+deploy:
+  provider: elasticbeanstalk
+  # @todo @kinano Make this a Travis secret/env variable
+  region: $EB_REGION
+  app: $EB_APP_NAME
+  env: $EB_ENV_NAME
+  bucket_name: $S3_BUCKET
+  bucket_path: $S3_PATH
+  # Only deploy master changes
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
+

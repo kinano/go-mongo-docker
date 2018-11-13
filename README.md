@@ -31,3 +31,6 @@ docker-compose down
 ## How did we implement Hot Reloading on GoLang?
 
 https://github.com/oxequa/realize
+
+## Deploy to EB
+Upload the `Dockerrun.aws.json` to EB environment

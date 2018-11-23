@@ -42,7 +42,8 @@ https://github.com/oxequa/realize
 APP_PORT
 MONGO_DB_BOOKINGS_COLLECTION
 MONGO_DB_LOGS_COLLECTION
-MONGO_URL # Create a Mongo DB instance on Mongo Cloud Atlas and acquire the URL. e.g. mongodb://USERNAME:PASSWORD@HOST/AUTH_DB?retryWrites=true
+MONGO_DB_NAME
+MONGO_URL # Connection URL to connect to your Mongo DB on the cloud e.g. mongodb://USERNAME:PASSWORD@HOST/AUTH_DB?retryWrites=true
 ```
 * Create a security group for your application and add the following inbound rules
 ```

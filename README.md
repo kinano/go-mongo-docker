@@ -32,7 +32,7 @@ docker-compose down
 
 https://github.com/oxequa/realize
 
-## Deploy to EB
+## Deploy to EBS
 * Build a medium EBS environment (MongoDB driver used in this app was failing to compile on small instances)
 * Remember to generate and use an EC2 key pair to be able to ssh into the created EC2 instance
 * Upload the `Dockerrun.aws.json` to EBS

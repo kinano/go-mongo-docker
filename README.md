@@ -33,6 +33,7 @@ docker-compose down
 https://github.com/oxequa/realize
 
 ## Deploy to EBS
+* Create a DB on Mongo DB Atlas (or any Mongo DB cloud provider)
 * Build a medium EBS environment (MongoDB driver used in this app was failing to compile on small instances)
 * Remember to generate and use an EC2 key pair to be able to ssh into the created EC2 instance
 * Upload the `Dockerrun.aws.json` to EBS
@@ -41,7 +42,7 @@ https://github.com/oxequa/realize
 APP_PORT
 MONGO_DB_BOOKINGS_COLLECTION
 MONGO_DB_LOGS_COLLECTION
-MONGO_URL
+MONGO_URL # Create a Mongo DB instance on Mongo Cloud Atlas and acquire the URL. e.g. mongodb://USERNAME:PASSWORD@HOST/AUTH_DB?retryWrites=true
 ```
 * Create a security group for your application and add the following inbound rules
 ```

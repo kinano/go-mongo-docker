@@ -1,4 +1,5 @@
 FROM kinano/go
+# @todo @kinano Use Go modules
 WORKDIR ${GOPATH}/src/github.com/kinano/api
 
 # Copy dependencies

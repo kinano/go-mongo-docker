@@ -1,5 +1,6 @@
 FROM kinano/go
 
+# @todo @kinano Use Go modules
 ENV SRC_DIR=${GOPATH}/src/github.com/kinano/api
 
 WORKDIR $SRC_DIR

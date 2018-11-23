@@ -33,4 +33,20 @@ docker-compose down
 https://github.com/oxequa/realize
 
 ## Deploy to EB
-Upload the `Dockerrun.aws.json` to EB environment
+* Build a medium EBS environment (MongoDB driver used in this app was failing to compile on small instances)
+* Remember to generate and use an EC2 key pair to be able to ssh into the created EC2 instance
+* Upload the `Dockerrun.aws.json` to EBS
+* Add the following config keys on EBS
+```
+APP_PORT
+MONGO_DB_BOOKINGS_COLLECTION
+MONGO_DB_LOGS_COLLECTION
+MONGO_URL
+```
+* Create a security group for your application and add the following inbound rules
+```
+type    protocol    port range  source
+SSH     TCP         22          Your IP address
+HTTP    TCP         80          0.0.0.0/0 (This is created by default when you create a web app on EBS)
+Custom  TCP         5000        YOUR SECURITY GROUP ID (This allows the nginx container to forward api traffic to the API container using port 5000. Replace the port with whatever APP_PORT env variable you used on EBS above)
+```

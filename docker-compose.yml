@@ -1,7 +1,7 @@
 version: "3.7"
 services:
   mongo_db:
-    image: skedaddle/mongo
+    image: kinano/mongo
     # Forward the mongodb port from the host to the container
     ports:
       - "27017:27017"
@@ -29,7 +29,7 @@ services:
     restart: on-failure
 
   nginx:
-    image: skedaddle/api-nginx
+    image: kinano/api-nginx
     ports:
       - "80:80"
 

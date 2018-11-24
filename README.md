@@ -28,11 +28,18 @@ docker-compose up
 docker-compose down
 ```
 
-## How did we implement Hot Reloading on GoLang?
+## How did we implement Hot Reloading for GoLang?
 
 https://github.com/oxequa/realize
 
 ## Deploy to EBS
+* Build the docker containers for AWS
+```
+docker build -t kinano/api-go ./src
+docker build -t kinano/api-nginx ./nginx
+docker image push kinano/api-go
+docker image push kinano/api-nginx
+```
 * Create a DB on Mongo DB Atlas (or any Mongo DB cloud provider)
 * Build a medium EBS environment (MongoDB driver used in this app was failing to compile on small instances)
 * Remember to generate and use an EC2 key pair to be able to ssh into the created EC2 instance
@@ -43,7 +50,7 @@ APP_PORT
 MONGO_DB_BOOKINGS_COLLECTION
 MONGO_DB_LOGS_COLLECTION
 MONGO_DB_NAME
-MONGO_URL # Connection URL to connect to your Mongo DB on the cloud e.g. mongodb://USERNAME:PASSWORD@HOST/AUTH_DB?retryWrites=true
+MONGO_URL # Connection URL to connect to your Mongo DB on the cloud e.g. mongodb://USERNAME:PASSWORD@HOST:PORT
 ```
 * Create a security group for your application and add the following inbound rules
 ```

@@ -8,12 +8,12 @@ script:
 
 after_success:
   # Build the prd containers
-  - docker build -t kinano/go-api ./src
+  - docker build -t kinano/api-go ./src
   - docker build -t kinano/api-nginx ./nginx
   # Login to Docker CLI
   - docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWORD
   # Push to Docker hub
-  - docker push kinano/go-api
+  - docker push kinano/api-go
   - docker push kinano/api-nginx
 
 deploy:

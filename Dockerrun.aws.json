@@ -3,7 +3,7 @@
     "containerDefinitions": [
         {
             "name": "api",
-            "image": "kinano/go-api",
+            "image": "kinano/api-go",
             "hostname": "api",
             "essential": false,
             "memory": 1024,

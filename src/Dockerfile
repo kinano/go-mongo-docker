@@ -1,19 +1,12 @@
 FROM kinano/go
 
-# @todo @kinano Use Go modules
-ENV SRC_DIR=${GOPATH}/src/github.com/kinano/api
+ENV SRC_DIR=${GOPATH}/src/github.com/kinano/go-mongo-docker
 
 WORKDIR $SRC_DIR
 
-# Copy dependencies
-COPY Gopkg.toml Gopkg.lock ./
-RUN mkdir -p $SRC_DIR/vendor
-
-# Compile dependencies
-RUN dep ensure -vendor-only -v
-
 # Copy source code
 COPY . .
-RUN go build -o ./build
 
-ENTRYPOINT ["./build"]
+RUN go build -o ./build/compiled_app
+
+ENTRYPOINT ["./build/compiled_app"]

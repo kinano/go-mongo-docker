@@ -10,13 +10,6 @@ echo 'export GOPATH=~/Development/go' >> ~/.zshrc
 source ~/.zshrc
 ```
 
-## Dependency Management
-
-* Install the api dependencies using dep
-```
-dep init -v
-```
-
 ## Running the container locally using Docker
 ```
 docker-compose build # This builds all the images you need to run the API locally

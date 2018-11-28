@@ -1,16 +1,15 @@
 FROM kinano/go
-# @todo @kinano Use Go modules
-WORKDIR ${GOPATH}/src/github.com/kinano/api
 
-# Copy dependencies
-COPY Gopkg.toml Gopkg.lock ./
-RUN mkdir ${GOPATH}/src/github.com/kinano/api/vendor
+ENV SRC_DIR=/github.com/kinano/go-mongo-docker
 
-# Compile dependencies
-RUN dep ensure -vendor-only -v
+WORKDIR $SRC_DIR
 
 # Copy source code
 COPY . .
 
 # On local DEV, we will use realize to hot reload our code changes in the container
-ENTRYPOINT ${GOPATH}/bin/realize start
+ENTRYPOINT ${GOPATH}/bin/CompileDaemon \
+    -directory=$SRC_DIR \
+    -graceful-kill=true \
+    -build="go build -o ./build/compiled_app" \
+    -command="./build/compiled_app"

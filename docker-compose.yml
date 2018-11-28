@@ -21,10 +21,7 @@ services:
       - "5000:5000"
     volumes:
       # Map the Go source code folder
-      # @todo @kinano Use Go modules
-      - ./src:/go/src/github.com/kinano/api
-      # Ignore the vendor folder on the container
-      - /go/src/github.com/kinano/api/vendor
+      - ./src:/github.com/kinano/go-mongo-docker
     # Restart the container on failure
     restart: on-failure
 

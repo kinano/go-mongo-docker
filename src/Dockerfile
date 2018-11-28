@@ -6,7 +6,7 @@ WORKDIR $SRC_DIR
 
 # Copy source code
 COPY . .
-# Disable CGO in order to be able to use go modules
-RUN go build -o ./build
 
-ENTRYPOINT ["./build"]
+RUN go build -o ./build/compiled_app
+
+ENTRYPOINT ["./build/compiled_app"]

@@ -22,8 +22,7 @@ docker-compose down
 ```
 
 ## How did we implement Hot Reloading for GoLang?
-
-https://github.com/oxequa/realize
+We are using [CompileDaemon](https://github.com/githubnemo/CompileDaemon) on local DEV. See [Dockerfile.local](https://github.com/kinano/go-mongo-docker/blob/develop/src/Dockerfile.local#L11) for details. 
 
 ## Deploy to EBS
 * Build the docker containers for AWS

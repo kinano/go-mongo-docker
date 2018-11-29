@@ -38,6 +38,7 @@ docker image push kinano/api-nginx
 * Upload the `Dockerrun.aws.json` to EBS
 * Add the following config keys on EBS
 ```
+APP_PORT
 MONGO_DB_NAME
 MONGO_DB_BOOKINGS_COLLECTION
 MONGO_DB_LOGS_COLLECTION

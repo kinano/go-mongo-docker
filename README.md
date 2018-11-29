@@ -38,11 +38,12 @@ docker image push kinano/api-nginx
 * Upload the `Dockerrun.aws.json` to EBS
 * Add the following config keys on EBS
 ```
-APP_PORT
+MONGO_DB_NAME
 MONGO_DB_BOOKINGS_COLLECTION
 MONGO_DB_LOGS_COLLECTION
-MONGO_DB_NAME
-MONGO_URL # Connection URL to connect to your Mongo DB on the cloud e.g. mongodb://USERNAME:PASSWORD@HOST:PORT
+MONGO_USERNAME
+MONGO_PASSWORD
+MONGO_HOST=HOST:PORT
 ```
 * Create a security group for your application and add the following inbound rules
 ```
